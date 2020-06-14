@@ -1,4 +1,3 @@
-# Changing the DataFrame to inject WebAssembly operators
+# Using libc with the WebAssembly DataFrame
 
-This project implements a simple data frame with calculations performed in
-WebAssembly.
+This project converts the previous implementation to use libc from wasm-libc.

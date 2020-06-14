@@ -13,6 +13,9 @@ function example () {
   const s3 = s1 + s2
   console.log(s3.toString())
 
+  const slog = s2.log()
+  console.log(slog.toString())
+
   const height = new Series('height', [1.82, 1.72, 1.64, 1.88], 'double')
   console.log(height.toString())
 

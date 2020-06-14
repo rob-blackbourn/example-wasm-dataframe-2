@@ -1,14 +1,15 @@
 export class WasmFunctionManager {
-  constructor (memory, allocateMemory, freeMemory) {
+  constructor (memory, malloc, free) {
     this.memory = memory
-    this.allocateMemory = allocateMemory
-    this.freeMemory = freeMemory
+    this.malloc = malloc
+    this.free = free
   }
 
   createTypedArray (typedArrayType, length) {
+    const ptr = this.malloc(length * typedArrayType.BYTES_PER_ELEMENT)
     const typedArray = new typedArrayType(
       this.memory.buffer,
-      this.allocateMemory(length * typedArrayType.BYTES_PER_ELEMENT),
+      ptr,
       length)
     
       if (typedArray.byteOffset === 0) {
@@ -40,8 +41,8 @@ export class WasmFunctionManager {
 
       return result
     } finally {
-      this.freeMemory(input.byteOffset)
-      this.freeMemory(output.byteOffset)
+      this.free(input.byteOffset)
+      this.free(output.byteOffset)
     }
   }
 
@@ -76,9 +77,9 @@ export class WasmFunctionManager {
 
       return result
     } finally {
-      this.freeMemory(input1.byteOffset)
-      this.freeMemory(input2.byteOffset)
-      this.freeMemory(output.byteOffset)
+      this.free(input1.byteOffset)
+      this.free(input2.byteOffset)
+      this.free(output.byteOffset)
     }
   }
 }
