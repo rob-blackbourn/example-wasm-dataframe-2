@@ -3,7 +3,7 @@ SYSROOT=/opt/wasi-libc
 LLVM_VERSION=10
 CC=clang-$(LLVM_VERSION)
 LD=wasm-ld-$(LLVM_VERSION)
-CFLAGS=--target=wasm32-unknwon-unknown-wasm --optimize=3 --sysroot=$(SYSROOT)
+CFLAGS=--target=wasm32-unknown-unknown-wasm --optimize=3 --sysroot=$(SYSROOT)
 LDFLAGS=--export-all --no-entry --allow-undefined -L$(SYSROOT)/lib/wasm32-wasi -lc -lm
 
 WASM2WAT=/opt/wabt/bin/wasm2wat
