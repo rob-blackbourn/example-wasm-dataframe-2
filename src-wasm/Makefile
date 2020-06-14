@@ -8,7 +8,6 @@ LDFLAGS=--export-all --no-entry --allow-undefined -L$(SYSROOT)/lib/wasm32-wasi -
 
 WASM2WAT=/opt/wabt/bin/wasm2wat
 
-# sources = array-methods.c memory-allocation.c foo.c
 sources = array-methods-int.c array-methods-double.c
 objects = $(sources:%.c=%.bc)
 target = data-frame
@@ -21,7 +20,7 @@ $(target).wat: $(target).wasm
 	$(WASM2WAT) $(target).wasm -o $(target).wat
 
 $(target).wasm: $(objects)
-	$(LD) $(objects) -L$(SYSROOT)/lib/wasm32-wasi/crt1.o $(LDFLAGS) -o $(target).wasm
+	$(LD) $(objects) $(LDFLAGS) -o $(target).wasm
 	
 %.bc: %.c
 	$(CC) -c -emit-llvm $(CFLAGS) $< -o $@
