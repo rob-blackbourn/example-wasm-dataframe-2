@@ -1,4 +1,4 @@
-SYSROOT=/home/rtb/dev/public/wasi-libc/sysroot
+SYSROOT=/opt/wasi-libc
 
 LLVM_VERSION=10
 CC=clang-$(LLVM_VERSION)
