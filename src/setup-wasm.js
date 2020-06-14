@@ -71,13 +71,7 @@ export async function setupWasm () {
   const buf = fs.readFileSync('./src-wasm/data-frame.wasm')
 
   // Instantiate the wasm module.
-  const res = await WebAssembly.instantiate(buf, {
-    // env: {
-    //   abort(_msg, _file, line, column) {
-    //     console.error("abort called at main.ts:" + line + ":" + column);
-    //   }
-    // }
-  })
+  const res = await WebAssembly.instantiate(buf, {})
 
   // Get the memory exports from the wasm instance.
   const {
